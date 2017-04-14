@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.happy.mycreation.Submission">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/productPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:gravity="center" />
+
+
+        <TextView
+            android:id="@+id/TVTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/ETTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:inputType="textCapWords"
+            android:textSize="13dp" />
+
+        <TextView
+             android:id="@+id/TVPrice"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Price: "
+             android:textColor="@color/colorPrimaryDark"
+             android:textSize="15dp"/>
+
+        <EditText
+             android:id="@+id/ETPrice"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="10dp"
+             android:inputType="numberDecimal"
+             android:textSize="13dp" />
+
+        <TextView
+             android:id="@+id/TVQuantity"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Quantity: "
+             android:textColor="@color/colorPrimaryDark"
+             android:textSize="15dp"/>
+
+        <EditText
+             android:id="@+id/ETQuantity"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="10dp"
+             android:inputType="number"
+             android:textSize="13dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

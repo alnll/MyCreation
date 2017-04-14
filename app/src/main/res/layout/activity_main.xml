@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.happy.mycreation.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/SellBackground"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/border"
+        android:clickable="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <ImageView
+            android:id="@+id/cameraImage"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            app:srcCompat="@drawable/ic_photo_camera_black" />
+
+        <TextView
+            android:id="@+id/TVSell"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="SELL"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/HistoryBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/border"
+        android:clickable="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <ImageView
+            android:id="@+id/IVHistory"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            app:srcCompat="@drawable/ic_history_black" />
+
+        <TextView
+            android:id="@+id/TVHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="ORDER HISTORY"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/test"
+        android:layout_above="@id/HistoryBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        app:srcCompat="@drawable/border" />
+
+
+</RelativeLayout>
