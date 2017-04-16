@@ -1,6 +1,7 @@
 package com.example.happy.mycreation;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,12 +20,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class logIn extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
     private static  EditText ETEmail, ETPassword;
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
+    private String cusID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,8 @@ public class logIn extends AppCompatActivity {
         setContentView(R.layout.login);
 
         mAuth = FirebaseAuth.getInstance();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         ETEmail = (EditText) findViewById(R.id.ETEmail);
         ETPassword = (EditText) findViewById(R.id.ETPassword);
@@ -57,7 +67,7 @@ public class logIn extends AppCompatActivity {
         newUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(logIn.this,registerActivity.class));
+                startActivity(new Intent(logIn.this,RegisterActivity.class));
                 finish();
 
             }
@@ -83,8 +93,23 @@ public class logIn extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "User Logged In",
                                     Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(logIn.this,MainActivity.class));
-                            finish();
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            cusID = user.getUid();
+
+                            databaseReference.child("Seller").child(cusID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot snapshot) {
+                                    if (snapshot.getValue() !== null) {
+                                        startActivity(new Intent(logIn.this, MainActivity.class));
+                                        finish();
+                                    } else {
+                                        //user does not exist, go to Buyer's page
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError arg0) {
+                                }
+                            });
                         }
 
                         if (!task.isSuccessful()) {

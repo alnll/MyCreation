@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".registerActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".Submission"></activity>
         <activity android:name=".transactionHistory" />
 

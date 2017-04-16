@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class registerActivity extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private EditText ETNameR, ETEmailRegis, ETPasswordRegis, ETPhoneNumber;
     private String ETName,ETEmailReg,ETPhone, ETPasswordReg,cusID;
@@ -53,7 +49,7 @@ public class registerActivity extends AppCompatActivity{
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(registerActivity.this,logIn.class));
+                startActivity(new Intent(RegisterActivity.this,logIn.class));
             }
         });
         regButton = (Button) findViewById(R.id.RegButton);
@@ -101,14 +97,16 @@ public class registerActivity extends AppCompatActivity{
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if(task.isSuccessful()){
-                            Toast.makeText(registerActivity.this, "Registration Successful",
+                            Toast.makeText(RegisterActivity.this, "Registration Successful",
                                     Toast.LENGTH_SHORT).show();
                             user = FirebaseAuth.getInstance().getCurrentUser();
                             cusID = user.getUid();
                             writeNewUser(cusID,ETName,ETEmailReg,ETPhone);
+                            //TODO buyer layout
+                            //            startActivity(new Intent(RegisterActivity.this, ));
                         }
                         if (!task.isSuccessful()) {
-                            Toast.makeText(registerActivity.this, "Registration Unsuccessful",
+                            Toast.makeText(RegisterActivity.this, "Registration Unsuccessful",
                                     Toast.LENGTH_SHORT).show();
                         }
 
