@@ -1,6 +1,5 @@
 package com.example.happy.mycreation;
 
-import android.app.DownloadManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +8,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
-import android.content.pm.PackageInfo;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LinearLayout llButton=(LinearLayout)findViewById(R.id.SellBackground);
+
         //Check the Android version
         int currentAndVer = android.os.Build.VERSION.SDK_INT;
         if(currentAndVer>= android.os.Build.VERSION_CODES.M){
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.CAMERA}, 1000);
             }
         }
-
+        //Camera Button
         llButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             llButton.setEnabled(false);
         }
 
+        //To open the Transaction History
+        LinearLayout llTransactionButton = (LinearLayout) findViewById(R.id.HistoryBackground);
+        llTransactionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, transactionHistory.class));
+            }
+        });
     }
 
     //Check if the user has a camera

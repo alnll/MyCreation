@@ -16,13 +16,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class registerActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
     private EditText ETNameR, ETEmailRegis, ETPasswordRegis, ETPhoneNumber;
-    private String ETName,ETEmailReg,ETPhone, ETPasswordReg;
+    private String ETName,ETEmailReg,ETPhone, ETPasswordReg,cusID;
     Button regButton, backButton;
     private static final String TAG = "CreateAccount";
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +41,13 @@ public class registerActivity extends AppCompatActivity{
 
         mAuth = FirebaseAuth.getInstance();
 
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
         ETNameR = (EditText) findViewById(R.id.ETName);
         ETEmailRegis = (EditText) findViewById(R.id.ETEmailReg);
         ETPasswordRegis = (EditText) findViewById(R.id.ETPasswordReg);
         ETPhoneNumber = (EditText) findViewById(R.id.ETPhone);
+
 
         backButton=(Button) findViewById(R.id.BackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -50,8 +61,9 @@ public class registerActivity extends AppCompatActivity{
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // To validate input when button is called
                 initialise();
-                createAccount(ETEmailReg, ETPasswordReg); // To validate input when button is called
+                createAccount(ETEmailReg, ETPasswordReg);
             }
         });
 
@@ -65,6 +77,12 @@ public class registerActivity extends AppCompatActivity{
         ETPhone =ETPhoneNumber.getText().toString().trim();
 
     }
+    private void writeNewUser(String userId, String name, String email, String Phone) {
+        CustomerUsers cusUser = new CustomerUsers(cusID,name, email, Phone);
+
+        databaseReference.child("Customers").child(userId).setValue(cusUser);
+    }
+
 
     private void createAccount(String email, String password) {
         Log.d(TAG, "createAccount:" + email);
@@ -85,6 +103,9 @@ public class registerActivity extends AppCompatActivity{
                         if(task.isSuccessful()){
                             Toast.makeText(registerActivity.this, "Registration Successful",
                                     Toast.LENGTH_SHORT).show();
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            cusID = user.getUid();
+                            writeNewUser(cusID,ETName,ETEmailReg,ETPhone);
                         }
                         if (!task.isSuccessful()) {
                             Toast.makeText(registerActivity.this, "Registration Unsuccessful",
