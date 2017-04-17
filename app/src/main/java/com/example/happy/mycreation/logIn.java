@@ -91,19 +91,20 @@ public class logIn extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "User Logged In",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "User Logged In",Toast.LENGTH_SHORT).show();
+
                             user = FirebaseAuth.getInstance().getCurrentUser();
                             cusID = user.getUid();
 
                             databaseReference.child("Seller").child(cusID).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot snapshot) {
-                                    if (snapshot.getValue() !== null) {
+                                    if (snapshot.getValue() != null) {
                                         startActivity(new Intent(logIn.this, MainActivity.class));
                                         finish();
                                     } else {
                                         //user does not exist, go to Buyer's page
+                                        Toast.makeText(getApplicationContext(), "Buyer", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override

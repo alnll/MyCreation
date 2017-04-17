@@ -4,7 +4,6 @@ package com.example.happy.mycreation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.author;
 
 public class CustomerUsers {
 
@@ -18,7 +17,6 @@ public class CustomerUsers {
         this.CID = CID;
         this.cusName = cusName;
         this.cusEmail = cusEmail;
-    //    this.cusPassword=cusPassword;
         this.cusPhone = cusPhone;
     }
 
@@ -35,7 +33,7 @@ public class CustomerUsers {
         return cusName;
     }
 
-    public void setCusName(){
+    public void setCusName(String cusName){
         this.cusName = cusName;
     }
 
@@ -43,7 +41,7 @@ public class CustomerUsers {
         return cusEmail;
     }
 
-    public void setCusEmail(){
+    public void setCusEmail(String cusEmail){
         this.cusEmail= cusEmail;
     }
 
@@ -51,7 +49,7 @@ public class CustomerUsers {
         return cusPhone;
     }
 
-    public void setCusPhone(){
+    public void setCusPhone(String cusPhone){
         this.cusPhone = cusPhone;
     }
 

@@ -117,22 +117,23 @@ public class RegisterActivity extends AppCompatActivity{
 
     }
     public boolean validate(){
+
         boolean valid = true;
         if(ETName.isEmpty()||ETName.length()>30){
-            ETNameR.setError("Please enter a valid name");
+            ETNameR.setError("Please enter a valid name.");
             valid = false;
         }
 
         if(ETEmailReg.isEmpty()||!Patterns.EMAIL_ADDRESS.matcher(ETEmailReg).matches()){
-            ETEmailRegis.setError("Please enter a valid e-mail address");
+            ETEmailRegis.setError("Please enter a valid e-mail address.");
             valid = false;
         }
         if(ETPasswordReg.isEmpty()||ETPasswordReg.length()<6){
-            ETPasswordRegis.setError("Please enter a valid password that is more than 6 characters");
+            ETPasswordRegis.setError("Please enter a valid password that is more than 6 characters.");
             valid = false;
         }
-        if(ETPhone.isEmpty()){
-            ETPhoneNumber.setError("Please enter the correct phone number");
+        if(ETPhone.isEmpty()|| ETPhone.length()<8 || ETPhone.length()>8){
+            ETPhoneNumber.setError("Please enter phone number (8 digits).");
             valid = false;
         }
         return valid;
