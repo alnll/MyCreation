@@ -39,7 +39,7 @@ public class Submission extends AppCompatActivity {
 
     private ImageView iv;
     private StorageReference mStorage;
-    private DatabaseReference databaseReference, dbURI;
+    private DatabaseReference databaseReference;
     private String dbReference;
     private FirebaseUser uid;
     String timeS;
@@ -84,7 +84,7 @@ public class Submission extends AppCompatActivity {
                     return;
                 }
                 if(validate()) {
-                    Toast.makeText(Submission.this, "Uploading...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Submission.this, "Uploading. Please wait.", Toast.LENGTH_SHORT).show();
 
                     //Assign to folder by using the userID and the timestamp as the title of the photo
                     StorageReference productImagesRef = mStorage.child("/" + dbReference + "/" + "/" + timeS + "/");
@@ -112,7 +112,7 @@ public class Submission extends AppCompatActivity {
                             @SuppressWarnings("VisibleForTests")
                             Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             sURI = downloadUrl.toString();
-                            writeNewProduct(dbReference, sTitle, sPrice, sQuantity, sURI);
+                            writeNewProduct(sTitle, sPrice, sQuantity, sURI);
                             startActivity(new Intent(Submission.this, MainActivity.class));
                         }
 
@@ -163,11 +163,11 @@ public class Submission extends AppCompatActivity {
         return valid;
     }
 
-    private void writeNewProduct(String userID, String Title, String Price, String Quantity, String URI) {
+    private void writeNewProduct(String Title, String Price, String Quantity, String URI) {
 
-        ProductDetails prodDetails = new ProductDetails(dbReference, Title, Price, Quantity, URI);
+        ProductDetails prodDetails = new ProductDetails(Title, Price, Quantity, URI);
 
-        databaseReference.child("Products").child(timeS).setValue(prodDetails);
+        databaseReference.child("Products").child(dbReference).child(timeS).setValue(prodDetails);
     }
 
 

@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:gravity="center"
-            android:text="ORDER HISTORY"
+            android:text="UPLOADED ITEMS"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="40sp" />
 

@@ -8,11 +8,13 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/LLTransac"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
+
 
         <TextView
             android:id="@+id/TVTransaction"
@@ -25,12 +27,20 @@
             android:text="Transaction History"
             android:textColor="@color/colorPrimaryDark"/>
 
-        <ListView
+        <Button
+            android:id="@+id/TBButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="BACK" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvTransact"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_height="match_parent" />
+
     </LinearLayout>
+
 
 </RelativeLayout>

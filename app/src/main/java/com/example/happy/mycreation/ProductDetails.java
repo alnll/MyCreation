@@ -8,7 +8,7 @@ import java.util.Map;
  */
 
 public class ProductDetails {
-    private String buyerID;
+    private String sellerID;
     private String title;
     private String price;
     private String quantity;
@@ -17,20 +17,20 @@ public class ProductDetails {
     public ProductDetails(){
     }
 
-    public ProductDetails(String buyerID,String title, String price, String quantity, String prodURI){
-        this.buyerID = buyerID;
+    public ProductDetails(String title, String price, String quantity, String prodURI){
+
         this.title=title;
         this.price=price;
         this.quantity=quantity;
         this.prodURI=prodURI;
     }
 
-    public String getBuyerID(){
-        return buyerID;
+    public String getSellerID(){
+        return sellerID;
     }
 
-    public void setBuyerID(String buyerID){
-        this.buyerID = buyerID;
+    public void setSellerID(String sellerID){
+        this.sellerID = sellerID;
     }
 
     public String getTitle(){

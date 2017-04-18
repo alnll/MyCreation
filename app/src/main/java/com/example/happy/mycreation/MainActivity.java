@@ -11,7 +11,11 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.LinearLayout;
 
-
+/*This class is the main activity of the sellers.
+* Sellers are able to perform 2 tasks.
+* 1. Upload their item.
+* 2. Check the items that they have uploaded
+*/
 
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE=1;
